@@ -49,7 +49,7 @@ inputs:
   #   default: 'false'
 runs:
   using: docker
-  image: andrcuns/allure-report-publisher:0.8.0
+  image: docker://andrcuns/allure-report-publisher:0.8.0
   args:
     - upload
     - ${{ inputs.storageType }}
