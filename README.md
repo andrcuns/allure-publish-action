@@ -53,21 +53,17 @@ env:
 ## Example
 
 ```yml
-report:
-  name: Allure report
-  runs-on: ubuntu-20.04
-  if: always()
-  steps:
-    - name: Publish allure report
-      uses: andrcuns/allure-publish-action@v1
-      env:
-        GOOGLE_CLOUD_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_JSON }}
-        GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        storageType: gcs
-        resultsGlob: "allure-results/*"
-        bucket: allure-test-reports
-        prefix: $GITHUB_REF
-        copyLatest: true
-        ignoreMissingResults: true
+steps:
+  - name: Publish allure report
+    uses: andrcuns/allure-publish-action@v1
+    env:
+      GOOGLE_CLOUD_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_JSON }}
+      GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      storageType: gcs
+      resultsGlob: "allure-results/*"
+      bucket: allure-test-reports
+      prefix: $GITHUB_REF
+      copyLatest: true
+      ignoreMissingResults: true
 ```
