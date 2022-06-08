@@ -2,6 +2,8 @@
 
 GitHub action to publish allure report in cloud provider of choice using [allure-report-publisher](https://github.com/andrcuns/allure-report-publisher)
 
+By default this action will upload a test report to cloud provider bucket and add test result summary and link to report in the [job summary](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary)
+
 ## Inputs
 
 - `storageType`: required: `true`, Cloud storage type (s3/gcp)
@@ -10,7 +12,7 @@ GitHub action to publish allure report in cloud provider of choice using [allure
 - `prefix`: required: `false`, Optional prefix for report path as stored in the bucket, default: `none`
 - `updatePr`: required: `false`,  Add report url and test result to pr or actions summary (comment/description/actions), default: `actions`
 - `summary`: required: `false`, Additionally add summary table of test results (behaviors/suites/packages/total), default: `total`
-- `summaryTableType`: required: `false`, Summary table type (ascii/markdown), default: `ascii`
+- `summaryTableType`: required: `false`, Summary table type (ascii/markdown), default: `markdown`
 - `collapseSummary`: required: `false`, Create summary table as a collapsable section, default: `false`
 - `copyLatest`: required: `false`, Keep copy of latest report at base prefix path (static url to latest test execution), default: `false`
 - `ignoreMissingResults`: required: `false`, Ignore missing allure results and exit with 0 status code, default: `false`

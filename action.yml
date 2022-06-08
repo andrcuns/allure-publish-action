@@ -28,6 +28,7 @@ inputs:
   summaryTableType:
     required: false
     description: "Summary table type (ascii or markdown)"
+    default: "markdown"
   collapseSummary:
     required: false
     description: "Create summary table as a collapsable section"
