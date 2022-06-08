@@ -5,54 +5,41 @@ inputs:
   storageType:
     required: true
     description: 'Cloud storage type'
-    default: s3
   resultsGlob:
     required: true
     description: 'Allure results files glob'
   bucket:
     required: true
     description: 'Bucket name'
-  args:
-    required: false
-    description: 'Additional allure-report-publisher args'
   prefix:
     required: false
     description: 'Optional prefix for report path'
-    default: ''
   updatePr:
     required: false
     description: 'Add report url to PR via comment or description update'
-    default: ''
   summary:
     required: false
     description: 'Additionally add summary table to PR comment or description'
-    default: ''
   summaryTableType:
     required: false
     description: 'Summary table type'
-    default: 'ascii'
   collapseSummary:
     required: false
     description: 'Create summary as a collapsable section'
-    default: 'false'
   copyLatest:
     required: false
     description: 'Keep copy of latest report at base prefix path'
-    default: 'false'
+  ignoreMissingResults:
+    required: false
+    description: 'Ignore missing allure results'
   color:
     required: false
     description: 'Force color output'
     default: 'true'
-  ignoreMissingResults:
-    required: false
-    description: 'Ignore missing allure results'
-    default: 'false'
 runs:
   using: docker
-  image: docker://andrcuns/allure-report-publisher:0.8.0
+  image: Dockerfile
   args:
-    - upload
-    - ${{ inputs.storageType }}
     - --results-glob=${{ inputs.resultsGlob }}
     - --bucket=${{ inputs.bucket }}
     - --prefix=${{ inputs.prefix }}
@@ -63,3 +50,4 @@ runs:
     - --copy-latest=${{ inputs.copyLatest }}
     - --ignore-missing-results=${{ inputs.ignoreMissingResults }}
     - --color=${{ inputs.color }}
+    - ${{ inputs.storageType }}
