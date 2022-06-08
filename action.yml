@@ -1,43 +1,46 @@
-name: 'allure-report-publisher'
-description: 'Publish allure report to cloud provider'
-author: 'Andrejs'
+name: "allure-report-publisher"
+description: "Publish allure report to cloud provider"
+author: "Andrejs"
+branding:
+  icon: "book-open"
+  color: "yellow"
 inputs:
   storageType:
     required: true
-    description: 'Cloud storage type'
+    description: "Cloud storage type"
   resultsGlob:
     required: true
-    description: 'Allure results files glob'
+    description: "Allure results files glob"
   bucket:
     required: true
-    description: 'Bucket name'
+    description: "Bucket name"
   prefix:
     required: false
-    description: 'Optional prefix for report path'
+    description: "Optional prefix for report path"
   updatePr:
     required: false
-    description: 'Add result summary (pr or actions summary)'
-    default: 'actions'
+    description: "Add result summary (pr or actions summary)"
+    default: "actions"
   summary:
     required: false
-    description: 'Additionally add summary table of test results'
-    default: 'total'
+    description: "Additionally add summary table of test results"
+    default: "total"
   summaryTableType:
     required: false
-    description: 'Summary table type (ascii or markdown)'
+    description: "Summary table type (ascii or markdown)"
   collapseSummary:
     required: false
-    description: 'Create summary table as a collapsable section'
+    description: "Create summary table as a collapsable section"
   copyLatest:
     required: false
-    description: 'Keep copy of latest report at base prefix path'
+    description: "Keep copy of latest report at base prefix path"
   ignoreMissingResults:
     required: false
-    description: 'Ignore missing allure results'
+    description: "Ignore missing allure results"
   color:
     required: false
-    description: 'Force color output'
-    default: 'true'
+    description: "Force color output"
+    default: "true"
 runs:
   using: docker
   image: Dockerfile
