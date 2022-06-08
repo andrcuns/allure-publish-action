@@ -1,4 +1,4 @@
-name: "allure-report-publisher"
+name: "allure-publish-action"
 description: "Publish allure report to cloud provider"
 author: "Andrejs"
 branding:
