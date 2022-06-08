@@ -31,7 +31,7 @@ env:
 
 ### Cloud auth token
 
-Depending on cloud provider used one of the environment variables for authentication has to be set:
+Depending on cloud provider used, one of the environment variables for authentication has to be set:
 
 - [AWS](https://github.com/andrcuns/allure-report-publisher#aws-s3)
 
