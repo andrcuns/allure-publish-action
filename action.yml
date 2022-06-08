@@ -1,0 +1,59 @@
+name: "allure-report-publisher"
+description: "Publish allure report to cloud provider"
+author: "Andrejs"
+branding:
+  icon: "book-open"
+  color: "yellow"
+inputs:
+  storageType:
+    required: true
+    description: "Cloud storage type"
+  resultsGlob:
+    required: true
+    description: "Allure results files glob"
+  bucket:
+    required: true
+    description: "Bucket name"
+  prefix:
+    required: false
+    description: "Optional prefix for report path"
+  updatePr:
+    required: false
+    description: "Add result summary (pr or actions summary)"
+    default: "actions"
+  summary:
+    required: false
+    description: "Additionally add summary table of test results"
+    default: "total"
+  summaryTableType:
+    required: false
+    description: "Summary table type (ascii or markdown)"
+    default: "markdown"
+  collapseSummary:
+    required: false
+    description: "Create summary table as a collapsable section"
+  copyLatest:
+    required: false
+    description: "Keep copy of latest report at base prefix path"
+  ignoreMissingResults:
+    required: false
+    description: "Ignore missing allure results"
+  color:
+    required: false
+    description: "Force color output"
+    default: "true"
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - --results-glob=${{ inputs.resultsGlob }}
+    - --bucket=${{ inputs.bucket }}
+    - --prefix=${{ inputs.prefix }}
+    - --update-pr=${{ inputs.updatePr }}
+    - --summary=${{ inputs.summary }}
+    - --summary-table-type=${{ inputs.summaryTableType }}
+    - --collapse-summary=${{ inputs.collapseSummary }}
+    - --copy-latest=${{ inputs.copyLatest }}
+    - --ignore-missing-results=${{ inputs.ignoreMissingResults }}
+    - --color=${{ inputs.color }}
+    - ${{ inputs.storageType }}
