@@ -2,7 +2,7 @@
 
 PARSED_ARGUMENTS=$(
   getopt \
-    -o g:b:p:u:s:t:c:l:i:f: \
+    -o g:b:p:u:s:t:m:l:i:c: \
     --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,copy-latest:,ignore-missing-results:,color: \
     -- "$@"
 )
@@ -34,7 +34,7 @@ while :; do
     [ "$2" != "" ] && table_type="$1=$2"
     shift 2
     ;;
-  -c | --collapse-summary)
+  -m | --collapse-summary)
     [ "$2" != "" ] && collapse_summary="$1"
     shift 2
     ;;
@@ -46,7 +46,7 @@ while :; do
     [ "$2" != "" ] && ignore_missing="$1"
     shift 2
     ;;
-  -f | --color)
+  -c | --color)
     [ "$2" != "" ] && color="$1"
     shift 2
     ;;
