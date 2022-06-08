@@ -35,19 +35,19 @@ while :; do
     shift 2
     ;;
   -m | --collapse-summary)
-    [ "$2" != "" ] && collapse_summary="$1"
+    [ "$2" == "true" -o "$2" == "1" ] && collapse_summary="$1"
     shift 2
     ;;
   -l | --copy-latest)
-    [ "$2" != "" ] && copy_latest="$1"
+    [ "$2" == "true" -o "$2" == "1" ] && copy_latest="$1"
     shift 2
     ;;
   -i | --ignore-missing-results)
-    [ "$2" != "" ] && ignore_missing="$1"
+    [ "$2" == "true" -o "$2" == "1" ] && ignore_missing="$1"
     shift 2
     ;;
   -c | --color)
-    [ "$2" != "" ] && color="$1"
+    [ "$2" == "true" -o "$2" == "1" ] && color="$1"
     shift 2
     ;;
   # -- means the end of the arguments; drop this, and break out of the while loop
