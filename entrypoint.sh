@@ -7,7 +7,6 @@ PARSED_ARGUMENTS=$(
     -- "$@"
 )
 
-echo "PARSED_ARGUMENTS is $PARSED_ARGUMENTS"
 eval set -- "$PARSED_ARGUMENTS"
 while :; do
   case "$1" in
@@ -56,10 +55,8 @@ while :; do
     shift
     break
     ;;
-  # If invalid options were passed, then getopt should have reported an error,
-  # which we checked as VALID_ARGUMENTS when getopt was called...
   *)
-    echo "Unexpected option: $1 - this should not happen."
+    echo "Unexpected option provided: '$1'"
     exit 2
     ;;
   esac
