@@ -31,7 +31,7 @@ while :; do
     [ "$2" != "" ] && summary="$1=$2"
     shift 2
     ;;
-  -t | --table-type)
+  -t | --summary-table-type)
     [ "$2" != "" ] && table_type="$1=$2"
     shift 2
     ;;
