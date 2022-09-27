@@ -61,7 +61,7 @@ steps:
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
       storageType: gcs
-      resultsGlob: "allure-results/*"
+      resultsGlob: "path/to/allure-results"
       bucket: allure-test-reports
       prefix: $GITHUB_REF
       copyLatest: true
