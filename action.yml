@@ -42,6 +42,10 @@ inputs:
     required: false
     description: "Force color output"
     default: "true"
+  debug:
+    required: false
+    description: "Add debug log output"
+    default: "false"
 runs:
   using: docker
   image: Dockerfile

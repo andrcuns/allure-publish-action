@@ -17,6 +17,7 @@ By default this action will upload a test report to cloud provider bucket and ad
 - `copyLatest`: required: `false`, Keep copy of latest report at base prefix path (static url to latest test execution), default: `false`
 - `ignoreMissingResults`: required: `false`, Ignore missing allure results and exit with 0 status code, default: `false`
 - `color`: required: `false`, Force color output, default: `true`
+- `debug`: required: `false`, Add debug log output, default: `false`
 
 ## Environment variables
 
