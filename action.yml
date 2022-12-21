@@ -17,6 +17,9 @@ inputs:
   prefix:
     required: false
     description: "Optional prefix for report path"
+  baseUrl:
+    required: false
+    description: "Custom report base url"
   updatePr:
     required: false
     description: "Add result summary (pr or actions summary)"
