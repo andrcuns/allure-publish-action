@@ -2,8 +2,8 @@
 
 PARSED_ARGUMENTS=$(
   getopt \
-    -o g:b:p:u:s:t:m:l:i:c:d: \
-    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,copy-latest:,ignore-missing-results:,color:,debug: \
+    -o g:b:p:u:s:t:m:l:i:c:d:r: \
+    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,copy-latest:,ignore-missing-results:,color:,debug:,base-url: \
     -- "$@"
 )
 
@@ -20,6 +20,10 @@ while :; do
     ;;
   -p | --prefix)
     [ "$2" != "" ] && prefix="$1=$2"
+    shift 2
+    ;;
+  -r | --base-url)
+    [ "$2" != "" ] && base_url="$1=$2"
     shift 2
     ;;
   -u | --update-pr)
@@ -66,7 +70,7 @@ while :; do
   esac
 done
 
-args="upload $@ ${glob} ${bucket} ${prefix} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${copy_latest} ${ignore_missing} ${color} ${debug}"
+args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${copy_latest} ${ignore_missing} ${color} ${debug}"
 trimmed_args=$(echo ${args} | awk '{$1=$1};1')
 
 echo "Running allure-report-publisher with arguments: '${trimmed_args}'"

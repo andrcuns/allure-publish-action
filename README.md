@@ -10,6 +10,7 @@ By default this action will upload a test report to cloud provider bucket and ad
 - `resultsGlob`: required: `true`,  Allure results files glob pattern
 - `bucket`: required: `true`, Bucket name
 - `prefix`: required: `false`, Optional prefix for report path as stored in the bucket, default: `none`
+- `baseUrl`: required: `false`, Custom base url for report link, example: `http://my-custom-url`, default: `none`
 - `updatePr`: required: `false`,  Add report url and test result to pr or actions summary (comment/description/actions), default: `actions`
 - `summary`: required: `false`, Additionally add summary table of test results (behaviors/suites/packages/total), default: `total`
 - `summaryTableType`: required: `false`, Summary table type (ascii/markdown), default: `markdown`
