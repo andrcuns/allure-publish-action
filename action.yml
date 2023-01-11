@@ -63,4 +63,5 @@ runs:
     - --copy-latest=${{ inputs.copyLatest }}
     - --ignore-missing-results=${{ inputs.ignoreMissingResults }}
     - --color=${{ inputs.color }}
+    - --base-url=${{ inputs.baseUrl }}
     - ${{ inputs.storageType }}
