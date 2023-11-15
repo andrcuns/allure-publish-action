@@ -64,4 +64,5 @@ runs:
     - --ignore-missing-results=${{ inputs.ignoreMissingResults }}
     - --color=${{ inputs.color }}
     - --base-url=${{ inputs.baseUrl }}
+    - --debug=${{ inputs.debug }}
     - ${{ inputs.storageType }}
