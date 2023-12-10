@@ -35,12 +35,18 @@ inputs:
   collapseSummary:
     required: false
     description: "Create summary table as a collapsable section"
+  reportTitle:
+    required: false
+    description: "Custom report title"
   copyLatest:
     required: false
     description: "Keep copy of latest report at base prefix path"
   ignoreMissingResults:
     required: false
     description: "Ignore missing allure results"
+  flakyWarningStatus:
+    required: false
+    description: "Flaky test warning status"
   color:
     required: false
     description: "Force color output"
@@ -60,8 +66,10 @@ runs:
     - --summary=${{ inputs.summary }}
     - --summary-table-type=${{ inputs.summaryTableType }}
     - --collapse-summary=${{ inputs.collapseSummary }}
+    - --report-title=${{ inputs.reportTitle }}
     - --copy-latest=${{ inputs.copyLatest }}
     - --ignore-missing-results=${{ inputs.ignoreMissingResults }}
+    - --flaky-warning-status=${{ inputs.flakyWarningStatus }}
     - --color=${{ inputs.color }}
     - --base-url=${{ inputs.baseUrl }}
     - --debug=${{ inputs.debug }}

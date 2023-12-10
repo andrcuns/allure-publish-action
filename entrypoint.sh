@@ -2,8 +2,8 @@
 
 PARSED_ARGUMENTS=$(
   getopt \
-    -o g:b:p:u:s:t:m:l:i:c:d:r: \
-    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,copy-latest:,ignore-missing-results:,color:,debug:,base-url: \
+    -o g:b:p:u:s:t:m:r:l:i:f:c:d:r: \
+    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url: \
     -- "$@"
 )
 
@@ -42,12 +42,20 @@ while :; do
     [ "$2" == "true" -o "$2" == "1" ] && collapse_summary="$1"
     shift 2
     ;;
+  -r | --report-title)
+    [ "$2" == "true" -o "$2" == "1" ] && report_title="$1"
+    shift 2
+    ;;
   -l | --copy-latest)
     [ "$2" == "true" -o "$2" == "1" ] && copy_latest="$1"
     shift 2
     ;;
   -i | --ignore-missing-results)
     [ "$2" == "true" -o "$2" == "1" ] && ignore_missing="$1"
+    shift 2
+    ;;
+  -f | --flaky-warning-status)
+    [ "$2" == "true" -o "$2" == "1" ] && flaky_warning_title="$1"
     shift 2
     ;;
   -c | --color)
@@ -70,7 +78,7 @@ while :; do
   esac
 done
 
-args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${copy_latest} ${ignore_missing} ${color} ${debug}"
+args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug}"
 trimmed_args=$(echo ${args} | awk '{$1=$1};1')
 
 echo "Running allure-report-publisher with arguments: '${trimmed_args}'"
