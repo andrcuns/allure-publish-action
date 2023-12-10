@@ -15,8 +15,10 @@ By default this action will upload a test report to cloud provider bucket and ad
 - `summary`: required: `false`, Additionally add summary table of test results (behaviors/suites/packages/total), default: `total`
 - `summaryTableType`: required: `false`, Summary table type (ascii/markdown), default: `markdown`
 - `collapseSummary`: required: `false`, Create summary table as a collapsable section, default: `false`
+- `reportTitle`: required: `false`, Custom report title, default: `Allure Report`
 - `copyLatest`: required: `false`, Keep copy of latest report at base prefix path (static url to latest test execution), default: `false`
 - `ignoreMissingResults`: required: `false`, Ignore missing allure results and exit with 0 status code, default: `false`
+- `flakyWarningStatus`: required: `false`, Use '!' status emoji when flaky tests are present in report, default: `false`
 - `color`: required: `false`, Force color output, default: `true`
 - `debug`: required: `false`, Add debug log output, default: `false`
 

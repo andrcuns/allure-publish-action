@@ -46,7 +46,7 @@ inputs:
     description: "Ignore missing allure results"
   flakyWarningStatus:
     required: false
-    description: "Flaky test warning status"
+    description: "Use '!' status emoji when flaky tests are present in report"
   color:
     required: false
     description: "Force color output"
