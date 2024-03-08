@@ -1,4 +1,4 @@
-FROM andrcuns/allure-report-publisher:3.1.0
+FROM andrcuns/allure-report-publisher:3.2.0
 
 COPY entrypoint.sh /entrypoint.sh
 
