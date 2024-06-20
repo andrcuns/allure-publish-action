@@ -2,8 +2,8 @@
 
 PARSED_ARGUMENTS=$(
   getopt \
-    -o g:b:p:u:s:t:m:r:l:i:f:c:d:r: \
-    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url: \
+    -o g:b:p:u:s:t:m:r:l:i:f:c:d:r:q: \
+    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url:parallel: \
     -- "$@"
 )
 
@@ -66,6 +66,10 @@ while :; do
     [ "$2" == "true" -o "$2" == "1" ] && debug="$1"
     shift 2
     ;;
+  -q | --parallel)
+    [ "$2" == "true" -o "$2" == "1" ] && parallel="$1"
+    shift 2
+    ;;
   # -- means the end of the arguments; drop this, and break out of the while loop
   --)
     shift
@@ -78,7 +82,7 @@ while :; do
   esac
 done
 
-args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug}"
+args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug} ${parallel}"
 trimmed_args=$(echo ${args} | awk '{$1=$1};1')
 
 echo "Running allure-report-publisher with arguments: '${trimmed_args}'"

@@ -55,6 +55,10 @@ inputs:
     required: false
     description: "Add debug log output"
     default: "false"
+  parallel:
+    required: false
+    description: "Number of parallel threads to use for report file upload to cloud storage"
+    default: "8"
 runs:
   using: docker
   image: Dockerfile
@@ -73,4 +77,5 @@ runs:
     - --color=${{ inputs.color }}
     - --base-url=${{ inputs.baseUrl }}
     - --debug=${{ inputs.debug }}
+    - --parallel=${{ inputs.parallel }}
     - ${{ inputs.storageType }}
