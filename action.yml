@@ -59,6 +59,10 @@ inputs:
     required: false
     description: "Number of parallel threads to use for report file upload to cloud storage"
     default: "8"
+  reportName:
+    required: false
+    description: "Custom report name"
+    default: "Test Report"
 runs:
   using: docker
   image: Dockerfile
