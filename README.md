@@ -21,6 +21,8 @@ By default this action will upload a test report to cloud provider bucket and ad
 - `flakyWarningStatus`: required: `false`, Use '!' status emoji when flaky tests are present in report, default: `false`
 - `color`: required: `false`, Force color output, default: `true`
 - `debug`: required: `false`, Add debug log output, default: `false`
+- `parallel`: required: `false`, Number of parallel threads to use for report file upload to cloud storage, default: `8`
+- `reportName`: required: `false`, Custom report name, default: `Test Report`
 
 ## Environment variables
 
