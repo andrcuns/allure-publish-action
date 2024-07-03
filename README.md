@@ -61,7 +61,7 @@ env:
 ```yml
 steps:
   - name: Publish allure report
-    uses: andrcuns/allure-publish-action@v2.7.0
+    uses: andrcuns/allure-publish-action@v2.7.1
     env:
       GOOGLE_CLOUD_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_JSON }}
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
