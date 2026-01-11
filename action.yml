@@ -27,7 +27,7 @@ inputs:
   config:
     required: false
     description: "Path to custom allure configuration file"
-  summary:
+  addSummary:
     required: false
     description: "Add summary section to PR comment or actions summary"
     default: "true"
@@ -70,7 +70,7 @@ runs:
     - --bucket=${{ inputs.bucket }}
     - --prefix=${{ inputs.prefix }}
     - --update-pr=${{ inputs.updatePr }}
-    - --summary=${{ inputs.summary }}
+    - --add-summary=${{ inputs.addSummary }}
     - --collapse-summary=${{ inputs.collapseSummary }}
     - --ci-report-title=${{ inputs.reportTitle }}
     - --copy-latest=${{ inputs.copyLatest }}

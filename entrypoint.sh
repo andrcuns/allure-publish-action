@@ -34,8 +34,8 @@ while :; do
     [ "$2" != "" ] && config="$1=$2"
     shift 2
     ;;
-  -s | --summary)
-    [ "$2" == "true" -o "$2" == "1" ] && summary="$1"
+  -s | --add-summary)
+    [ "$2" == "true" -o "$2" == "1" ] && add_summary="$1"
     shift 2
     ;;
   -m | --collapse-summary)
@@ -86,7 +86,7 @@ while :; do
   esac
 done
 
-args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${config} ${summary} ${collapse_summary} ${ci_report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug} ${parallel} ${report_name}"
+args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${config} ${add_summary} ${collapse_summary} ${ci_report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug} ${parallel} ${report_name}"
 trimmed_args=$(echo ${args} | awk '{$1=$1};1')
 
 echo "Running allure-report-publisher with arguments: '${trimmed_args}'"
