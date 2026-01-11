@@ -18,6 +18,7 @@ jobs:
           docker run -d \
             --name minio \
             --volume "$(pwd)/minio":/data \
+            --publish 9000:9000 \
             quay.io/minio/minio:latest \
             server /data
       - name: Extract allure results
