@@ -8,12 +8,12 @@ inputs:
   storageType:
     required: true
     description: "Cloud storage type"
-  resultsGlob:
-    required: true
-    description: "Allure results files glob"
   bucket:
     required: true
     description: "Bucket name"
+  resultsGlob:
+    required: false
+    description: "Allure results files glob"
   prefix:
     required: false
     description: "Optional prefix for report path"

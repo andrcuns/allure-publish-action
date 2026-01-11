@@ -10,12 +10,12 @@ PARSED_ARGUMENTS=$(
 eval set -- "$PARSED_ARGUMENTS"
 while :; do
   case "$1" in
-  -g | --results-glob)
-    glob="$1='$2'"
-    shift 2
-    ;;
   -b | --bucket)
     bucket="$1=$2"
+    shift 2
+    ;;
+  -g | --results-glob)
+    [ "$2" != "" ] && glob="$1=$2"
     shift 2
     ;;
   -p | --prefix)

@@ -7,7 +7,7 @@ By default this action will upload a test report to cloud provider bucket and ad
 ## Inputs
 
 - `storageType`: required: `true`, Cloud storage type (s3/gcp)
-- `resultsGlob`: required: `true`,  Allure results files glob pattern
+- `resultsGlob`: required: `false`,  Allure results files glob pattern, default: `./**/allure-results`
 - `bucket`: required: `true`, Bucket name
 - `prefix`: required: `false`, Optional prefix for report path as stored in the bucket, default: `none`
 - `baseUrl`: required: `false`, Custom base url for report link, example: `http://my-custom-url`, default: `none`
