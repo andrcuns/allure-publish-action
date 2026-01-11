@@ -22,7 +22,7 @@ jobs:
             quay.io/minio/minio:latest \
             server /data
       - name: Extract allure results
-        run: tar -xzf test/allure-results.tar.gz -C allure-results
+        run: tar -xvf test/allure-results.tar.gz
       - name: Publish Allure Report
         uses: ./
         env:
@@ -33,6 +33,5 @@ jobs:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           storageType: s3
-          resultsGlob: "allure-results"
           bucket: "allure-reports"
           prefix: "allure-report-publisher/${{ github.ref }}"
