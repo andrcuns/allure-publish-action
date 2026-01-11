@@ -11,11 +11,11 @@ By default this action will upload a test report to cloud provider bucket and ad
 - `bucket`: required: `true`, Bucket name
 - `prefix`: required: `false`, Optional prefix for report path as stored in the bucket, default: `none`
 - `baseUrl`: required: `false`, Custom base url for report link, example: `http://my-custom-url`, default: `none`
+- `config`: required: `false`, Path to custom allure configuration file, default: `none`
 - `updatePr`: required: `false`,  Add report url and test result to pr or actions summary (comment/description/actions), default: `actions`
-- `summary`: required: `false`, Additionally add summary table of test results (behaviors/suites/packages/total), default: `total`
-- `summaryTableType`: required: `false`, Summary table type (ascii/markdown), default: `markdown`
-- `collapseSummary`: required: `false`, Create summary table as a collapsable section, default: `false`
-- `reportTitle`: required: `false`, Custom report title, default: `Allure Report`
+- `summary`: required: `false`, Additionally add summary table of test results, default: `true`
+- `collapseSummary`: required: `false`, Create summary table as a collapsible section, default: `false`
+- `reportTitle`: required: `false`, Custom report title for PR comment/description/actions section, default: `Allure Report`
 - `copyLatest`: required: `false`, Keep copy of latest report at base prefix path (static url to latest test execution), default: `false`
 - `ignoreMissingResults`: required: `false`, Ignore missing allure results and exit with 0 status code, default: `false`
 - `flakyWarningStatus`: required: `false`, Use '!' status emoji when flaky tests are present in report, default: `false`
@@ -26,7 +26,7 @@ By default this action will upload a test report to cloud provider bucket and ad
 
 ## Environment variables
 
-Action requires 2 environment variables to be set up
+Action requires 2 environment variable types to be set up
 
 ### Github auth token
 
@@ -53,7 +53,7 @@ env:
 
 ```yml
 env:
-  GOOGLE_CLOUD_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_JSON }}
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS  }}
 ```
 
 ## Example
@@ -61,12 +61,13 @@ env:
 ```yml
 steps:
   - name: Publish allure report
-    uses: andrcuns/allure-publish-action@v2.10.0
+    uses: andrcuns/allure-publish-action@v3.0.0
     env:
-      GOOGLE_CLOUD_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_JSON }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
-      storageType: gcs
+      storageType: s3
       resultsGlob: "path/to/allure-results"
       bucket: allure-test-reports
       prefix: $GITHUB_REF

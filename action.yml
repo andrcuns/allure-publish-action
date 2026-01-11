@@ -24,20 +24,19 @@ inputs:
     required: false
     description: "Add result summary (pr or actions summary)"
     default: "actions"
+  config:
+    required: false
+    description: "Path to custom allure configuration file"
   summary:
     required: false
-    description: "Additionally add summary table of test results"
-    default: "total"
-  summaryTableType:
-    required: false
-    description: "Summary table type (ascii or markdown)"
-    default: "markdown"
+    description: "Add summary section to PR comment or actions summary"
+    default: "true"
   collapseSummary:
     required: false
-    description: "Create summary table as a collapsable section"
+    description: "Create summary table as a collapsible section"
   reportTitle:
     required: false
-    description: "Custom report title"
+    description: "Title for PR comment/description section"
   copyLatest:
     required: false
     description: "Keep copy of latest report at base prefix path"
@@ -72,9 +71,8 @@ runs:
     - --prefix=${{ inputs.prefix }}
     - --update-pr=${{ inputs.updatePr }}
     - --summary=${{ inputs.summary }}
-    - --summary-table-type=${{ inputs.summaryTableType }}
     - --collapse-summary=${{ inputs.collapseSummary }}
-    - --report-title=${{ inputs.reportTitle }}
+    - --ci-report-title=${{ inputs.reportTitle }}
     - --copy-latest=${{ inputs.copyLatest }}
     - --ignore-missing-results=${{ inputs.ignoreMissingResults }}
     - --flaky-warning-status=${{ inputs.flakyWarningStatus }}
@@ -82,4 +80,5 @@ runs:
     - --base-url=${{ inputs.baseUrl }}
     - --debug=${{ inputs.debug }}
     - --parallel=${{ inputs.parallel }}
+    - --config=${{ inputs.config }}
     - ${{ inputs.storageType }}
