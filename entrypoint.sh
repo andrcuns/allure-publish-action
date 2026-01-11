@@ -2,8 +2,8 @@
 
 PARSED_ARGUMENTS=$(
   getopt \
-    -o g:b:p:u:m:r:l:i:f:c:d:r:q:n:t: \
-    --long results-glob:,bucket:,prefix:,update-pr:,collapse-summary:,ci-report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url:,parallel:,report-name:,config: \
+    -o g:b:p:u:t:s:m:r:l:i:f:c:d:q:n: \
+    --long results-glob:,bucket:,prefix:,update-pr:,summary:,collapse-summary:,ci-report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url:,parallel:,report-name:,config: \
     -- "$@"
 )
 
