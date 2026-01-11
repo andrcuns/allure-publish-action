@@ -26,7 +26,7 @@ jobs:
       - name: Publish Allure Report
         uses: ./
         env:
-          AWS_ENDPOINT: http://minio:9000
+          AWS_ENDPOINT: http://host.docker.internal:9000
           AWS_FORCE_PATH_STYLE: "true"
           AWS_ACCESS_KEY_ID: minioadmin
           AWS_SECRET_ACCESS_KEY: minioadmin
