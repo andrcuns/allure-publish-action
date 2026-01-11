@@ -1,0 +1,31 @@
+name: Test Action
+
+on:
+  pull_request:
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    name: Test Allure Publish Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Minio
+        run: |
+          mkdir -p minio/allure-reports
+          docker network create allure
+          docker run -d \
+            --name minio \
+            --network allure \
+            --volume "$(pwd)/minio":/data \
+            quay.io/minio/minio:latest \
+            server /data
+      - name: Extract allure results
+        run: tar -xzf test/allure-results.tar.gz -C allure-results
+      - name: Publish Allure Report
+        uses: ./
+        with:
+          storageType: s3
+          resultsGlob: "allure-results"
+          bucket: "allure-reports"
+          prefix: "allure-report-publisher/${{ github.ref }}"
