@@ -2,20 +2,20 @@
 
 PARSED_ARGUMENTS=$(
   getopt \
-    -o g:b:p:u:s:t:m:r:l:i:f:c:d:r:q:n: \
-    --long results-glob:,bucket:,prefix:,update-pr:,summary:,summary-table-type:,collapse-summary:,report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url:,parallel:,report-name: \
+    -o g:b:p:u:t:s:m:r:l:i:f:c:d:q:n: \
+    --long results-glob:,bucket:,prefix:,update-pr:,add-summary:,collapse-summary:,ci-report-title:,copy-latest:,ignore-missing-results:,flaky-warning-status:,color:,debug:,base-url:,parallel:,report-name:,config: \
     -- "$@"
 )
 
 eval set -- "$PARSED_ARGUMENTS"
 while :; do
   case "$1" in
-  -g | --results-glob)
-    glob="$1='$2'"
-    shift 2
-    ;;
   -b | --bucket)
     bucket="$1=$2"
+    shift 2
+    ;;
+  -g | --results-glob)
+    [ "$2" != "" ] && glob="$1=$2"
     shift 2
     ;;
   -p | --prefix)
@@ -30,20 +30,20 @@ while :; do
     [ "$2" != "" ] && updatePr="$1=$2"
     shift 2
     ;;
-  -s | --summary)
-    [ "$2" != "" ] && summary="$1=$2"
+  -t | --config)
+    [ "$2" != "" ] && config="$1=$2"
     shift 2
     ;;
-  -t | --summary-table-type)
-    [ "$2" != "" ] && table_type="$1=$2"
+  -s | --add-summary)
+    [ "$2" == "true" -o "$2" == "1" ] && add_summary="$1"
     shift 2
     ;;
   -m | --collapse-summary)
     [ "$2" == "true" -o "$2" == "1" ] && collapse_summary="$1"
     shift 2
     ;;
-  -r | --report-title)
-    [ "$2" == "true" -o "$2" == "1" ] && report_title="$1"
+  -r | --ci-report-title)
+    [ "$2" == "true" -o "$2" == "1" ] && ci_report_title="$1"
     shift 2
     ;;
   -l | --copy-latest)
@@ -86,7 +86,7 @@ while :; do
   esac
 done
 
-args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${summary} ${table_type} ${collapse_summary} ${report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug} ${parallel} ${report_name}"
+args="upload $@ ${glob} ${bucket} ${prefix} ${base_url} ${updatePr} ${config} ${add_summary} ${collapse_summary} ${ci_report_title} ${copy_latest} ${ignore_missing} ${flaky_warning_title} ${color} ${debug} ${parallel} ${report_name}"
 trimmed_args=$(echo ${args} | awk '{$1=$1};1')
 
 echo "Running allure-report-publisher with arguments: '${trimmed_args}'"

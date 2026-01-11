@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Publish report
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Minio
+        run: |
+          mkdir -p minio/allure-reports
+          docker run -d \
+            --name minio \
+            --volume "$(pwd)/minio":/data \
+            --publish 9000:9000 \
+            quay.io/minio/minio:latest \
+            server /data
+      - name: Extract allure results
+        run: tar -xvf test/allure-results.tar.gz
+      - name: Publish Allure Report
+        uses: ./
+        env:
+          AWS_ENDPOINT: http://172.17.0.1:9000
+          AWS_FORCE_PATH_STYLE: "true"
+          AWS_ACCESS_KEY_ID: minioadmin
+          AWS_SECRET_ACCESS_KEY: minioadmin
+          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          storageType: s3
+          bucket: "allure-reports"
+          prefix: "allure-report-publisher/${{ github.ref }}"
