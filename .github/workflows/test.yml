@@ -35,3 +35,4 @@ jobs:
           storageType: s3
           bucket: "allure-reports"
           prefix: "allure-report-publisher/${{ github.ref }}"
+          debug: "true"
