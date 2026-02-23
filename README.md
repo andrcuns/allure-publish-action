@@ -61,7 +61,7 @@ env:
 ```yml
 steps:
   - name: Publish allure report
-    uses: andrcuns/allure-publish-action@v3.0.0
+    uses: andrcuns/allure-publish-action@v3.2.0
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
